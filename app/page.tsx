@@ -1,100 +1,238 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+import { Github, Linkedin, Mail, Sun, Moon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [mounted, setMounted] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+  useEffect(() => {
+    setMounted(true);
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      if (darkMode) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+  }, [darkMode, mounted]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  // Data Configuration
+  const projects = [
+    {
+      title: "Perpustakaan API",
+      description:
+        "A RESTful API for managing library data. Features include book management, member management, and borrowing system.",
+      repo: "Fairuzzzzz/perpustakaan-api",
+      tags: ["Go", "PostgreSQL", "REST API", "JWT"],
+    },
+    {
+      title: "Pokedex API",
+      description:
+        "Pokemon team management API built with Go and PostgreSQL, integrating with PokeAPI.",
+      repo: "Fairuzzzzz/pokedex-api",
+      tags: ["Go", "PostgreSQL", "REST API", "Third-party Integration"],
+    },
+    {
+      title: "Donut DocVQA",
+      description:
+        "Document Visual Question Answering implementation using the Donut Model.",
+      repo: "Fairuzzzzz/Donut-Docvqa",
+      tags: ["Python", "PyTorch", "Computer Vision", "NLP"],
+    },
+  ];
+
+  const techStack = [
+    "Go",
+    "Python",
+    "PostgreSQL",
+    "MySQL",
+    "PyTorch",
+    "Figma",
+    "REST API",
+    "Git",
+    "Docker",
+  ];
+
+  const userInfo = {
+    name: "Fairuz Afnan",
+    title: "Software Developer & UI/UX Designer",
+    location: "Yogyakarta, Indonesia",
+    education: "Sekolah Vokasi, University of Gadjah Mada",
+    bio: {
+      intro: "An active student with expertise in both design and development.",
+      specializations: [
+        "Backend Development using Go",
+        "UI/UX Design with proficiency in Figma",
+        "Data Science and AI implementations",
+        "Database Management (PostgreSQL, MySQL)",
+      ],
+      currentFocus: [
+        "Machine Learning and Deep Learning",
+        "Microservices Architecture",
+      ],
+      outro:
+        "Committed to continuous learning and professional growth in technology.",
+    },
+  };
+
+  if (!mounted) {
+    return null;
+  }
+
+  return (
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white font-mono transition-colors duration-300">
+      <main className="max-w-4xl mx-auto p-6 md:p-12 space-y-16">
+        {/* About Section */}
+        <section className="space-y-8">
+          <div className="flex justify-between items-start">
+            <div className="space-y-2">
+              <h1 className="text-4xl font-bold">{userInfo.name}</h1>
+              <p className="text-xl text-black/70 dark:text-white/70">
+                {userInfo.title}
+              </p>
+              <p className="text-sm text-black/60 dark:text-white/60">
+                {userInfo.location}
+              </p>
+              <p className="text-sm text-black/60 dark:text-white/60">
+                {userInfo.education}
+              </p>
+            </div>
+            <Button variant="outline" size="icon" onClick={toggleDarkMode}>
+              {darkMode ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </Button>
+          </div>
+
+          <div className="space-y-6">
+            <p className="text-lg text-black/80 dark:text-white/80">
+              {userInfo.bio.intro}
+            </p>
+
+            <div className="space-y-4">
+              <h3 className="font-semibold">Specializing in:</h3>
+              <ul className="space-y-2 pl-4">
+                {userInfo.bio.specializations.map((item, index) => (
+                  <li
+                    key={index}
+                    className="text-black/80 dark:text-white/80 before:content-['•'] before:mr-2 before:text-black/60 dark:before:text-white/60"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="font-semibold">Currently focused on:</h3>
+              <ul className="space-y-2 pl-4">
+                {userInfo.bio.currentFocus.map((item, index) => (
+                  <li
+                    key={index}
+                    className="text-black/80 dark:text-white/80 before:content-['•'] before:mr-2 before:text-black/60 dark:before:text-white/60"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <p className="text-black/80 dark:text-white/80 italic">
+              {userInfo.bio.outro}
+            </p>
+          </div>
+        </section>
+
+        {/* Tech Stack Section */}
+        <section className="space-y-4">
+          <h2 className="text-2xl font-bold"># Tech Stack</h2>
+          <div className="flex flex-wrap gap-2">
+            {techStack.map((tech) => (
+              <span
+                key={tech}
+                className="px-3 py-1 bg-black/10 dark:bg-white/10 rounded-md text-sm"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section className="space-y-6">
+          <h2 className="text-2xl font-bold"># Projects</h2>
+          <div className="grid gap-6">
+            {projects.map((project) => (
+              <a
+                key={project.title}
+                href={`https://github.com/${project.repo}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block p-6 bg-black/5 dark:bg-white/5 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+              >
+                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                <p className="text-black/70 dark:text-white/70 mb-4">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-1 text-xs bg-black/10 dark:bg-white/10 rounded"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* Social Links Section */}
+        <section className="space-y-4">
+          <h2 className="text-2xl font-bold"># Connect</h2>
+          <div className="flex flex-wrap gap-4">
+            <Button variant="outline" size="icon" asChild>
+              <Link href="https://github.com/Fairuzzzzz" target="_blank">
+                <Github className="h-5 w-5" />
+              </Link>
+            </Button>
+            <Button variant="outline" size="icon" asChild>
+              <Link
+                href="https://www.linkedin.com/in/fairuzafnan/"
+                target="_blank"
+              >
+                <Linkedin className="h-5 w-5" />
+              </Link>
+            </Button>
+            <Button variant="outline" size="icon" asChild>
+              <Link href="mailto:fairuz.afnan@gmail.com">
+                <Mail className="h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="border-t border-black/10 dark:border-white/10 p-6 text-center text-black/60 dark:text-white/60">
+        <p>© 2024 Fairuz Afnan. All rights reserved.</p>
       </footer>
     </div>
   );
