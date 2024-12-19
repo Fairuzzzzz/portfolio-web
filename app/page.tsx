@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Github, Linkedin, Mail, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { title } from "process";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
