@@ -6,6 +6,10 @@ import { Sun, Moon, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
 
+export async function generateStaticParams() {
+  return [{ slug: "project-1" }, { slug: "project-2" }, { slug: "project-3" }];
+}
+
 export default function ProjectPage() {
   const [darkMode, setDarkMode] = useState(true);
   const [readme, setReadme] = useState("");
@@ -31,15 +35,8 @@ export default function ProjectPage() {
       title: "Ally AI Chat App",
       description:
         "Ally AI is a Flutter-based mobile application that provides an interactive chat interface powered by the Groq AI model.",
-      repo: "Fairuzzzzz/ai-chat-app",
-      tags: ["Flutter", "Dart", "Supabase", "Groq"],
-    },
-    {
-      title: "Donut DocVQA",
-      description:
-        "Donut-DocVQA: Document Visual Question Answering with Donut Model",
       slug: "project-3",
-      repo: "Fairuzzzzz/Donut-Docvqa",
+      repo: "Fairuzzzzz/ai-chat-app",
     },
   ];
 

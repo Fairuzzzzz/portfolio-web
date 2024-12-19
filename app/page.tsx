@@ -53,21 +53,12 @@ export default function Home() {
       repo: "Fairuzzzzz/ai-chat-app",
       tags: ["Flutter", "Dart", "Supabase", "Groq"],
     },
-    {
-      title: "Donut DocVQA",
-      description:
-        "Document Visual Question Answering implementation using the Donut Model.",
-      repo: "Fairuzzzzz/Donut-Docvqa",
-      tags: ["Python", "PyTorch", "Computer Vision", "NLP"],
-    },
   ];
 
   const techStack = [
     "Go",
-    "Python",
     "PostgreSQL",
     "MySQL",
-    "PyTorch",
     "Figma",
     "REST API",
     "Git",
