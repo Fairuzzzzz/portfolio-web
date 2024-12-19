@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Github, Linkedin, Mail, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { title } from "process";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -47,6 +48,13 @@ export default function Home() {
       tags: ["Go", "PostgreSQL", "REST API", "Third-party Integration"],
     },
     {
+      title: "Ally AI Chat App",
+      description:
+        "Ally AI is a Flutter-based mobile application that provides an interactive chat interface powered by the Groq AI model.",
+      repo: "Fairuzzzzz/ai-chat-app",
+      tags: ["Flutter", "Dart", "Supabase", "Groq"],
+    },
+    {
       title: "Donut DocVQA",
       description:
         "Document Visual Question Answering implementation using the Donut Model.",
@@ -65,6 +73,8 @@ export default function Home() {
     "REST API",
     "Git",
     "Docker",
+    "Flutter",
+    "Dart",
   ];
 
   const userInfo = {
@@ -77,13 +87,10 @@ export default function Home() {
       specializations: [
         "Backend Development using Go",
         "UI/UX Design with proficiency in Figma",
-        "Data Science and AI implementations",
+        "Mobile Apps Development using Flutter",
         "Database Management (PostgreSQL, MySQL)",
       ],
-      currentFocus: [
-        "Machine Learning and Deep Learning",
-        "Microservices Architecture",
-      ],
+      currentFocus: ["Mobile Apps Development", "Microservices Architecture"],
       outro:
         "Committed to continuous learning and professional growth in technology.",
     },
