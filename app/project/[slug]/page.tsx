@@ -28,6 +28,13 @@ export default function ProjectPage() {
       repo: "Fairuzzzzz/pokedex-api",
     },
     {
+      title: "Ally AI Chat App",
+      description:
+        "Ally AI is a Flutter-based mobile application that provides an interactive chat interface powered by the Groq AI model.",
+      repo: "Fairuzzzzz/ai-chat-app",
+      tags: ["Flutter", "Dart", "Supabase", "Groq"],
+    },
+    {
       title: "Donut DocVQA",
       description:
         "Donut-DocVQA: Document Visual Question Answering with Donut Model",
