@@ -220,7 +220,7 @@ export default function Home() {
               </Link>
             </Button>
             <Button variant="outline" size="icon" asChild>
-              <Link href="mailto:fairuz.afnan@gmail.com">
+              <Link href="mailto:fairuz.afnan@gmail.com" target="_blank">
                 <Mail className="h-5 w-5" />
               </Link>
             </Button>
